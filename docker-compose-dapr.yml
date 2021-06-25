@@ -35,8 +35,7 @@ services:
         "/dapr/local",
       ]
     volumes:
-      - "./components:/dapr"
-      - ./vault_dev_token:/vault/token
+      - "./components:/dapr"      
     depends_on:
       - website
     network_mode: "service:website"
@@ -69,7 +68,6 @@ services:
       ]
     volumes:
       - "./components:/dapr"
-      - ./vault_dev_token:/vault/token
     depends_on:
       - productsapi
     network_mode: "service:productsapi"
@@ -102,7 +100,6 @@ services:
       ]
     volumes:
       - "./components:/dapr"
-      - ./vault_dev_token:/vault/token
     depends_on:      
       - checkoutprocessor
     env_file:
