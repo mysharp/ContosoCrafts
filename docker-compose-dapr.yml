@@ -21,7 +21,7 @@ services:
     logging: *default-logging
 
   website_dapr:
-    image: "daprio/daprd:1.0.1"
+    image: "daprio/daprd:1.2.2"
     command:
       [
         "./daprd",
@@ -54,7 +54,7 @@ services:
     logging: *default-logging
 
   productsapi_dapr:
-    image: "daprio/daprd:1.0.1"
+    image: "daprio/daprd:1.2.2"
     command:
       [
         "./daprd",
@@ -87,7 +87,7 @@ services:
     logging: *default-logging
 
   checkoutprocessor_dapr:
-    image: "daprio/daprd:1.0.1"
+    image: "daprio/daprd:1.2.2"
     command:
       [
         "./daprd",
