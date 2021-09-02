@@ -13,25 +13,7 @@
             "sourceFileMap": {
                 "/src": "${workspaceFolder}/src/ContosoCrafts.WebSite"
             }
-        },
-        {
-            "name": "Docker API Attach",
-            "type": "docker",
-            "request": "attach",
-            "platform": "netCore",
-            "sourceFileMap": {
-                "/src": "${workspaceFolder}/src/ContosoCrafts.ProductsApi"
-            }
-        },
-        {
-            "name": "Docker CheckoutProcessor Attach",
-            "type": "docker",
-            "request": "attach",
-            "platform": "netCore",
-            "sourceFileMap": {
-                "/src": "${workspaceFolder}/src/ContosoCrafts.CheckoutProcessor"
-            }
-        },
+        },       
         {
             "name": "Debug ContosoCrafts.WebSite",
             "type": "coreclr",
@@ -51,27 +33,7 @@
             "sourceFileMap": {
                 "/Views": "${workspaceFolder}/Views"
             }
-        },
-        {
-            "name": "Debug ContosoCrafts.ProductsApi",
-            "type": "coreclr",
-            "request": "launch",
-            "preLaunchTask": "build api",
-            "program": "${workspaceFolder}/src/ContosoCrafts.ProductsApi/bin/Debug/netcoreapp3.1/ContosoCrafts.ProductsApi.dll",
-            "args": [],
-            "cwd": "${workspaceFolder}/src/ContosoCrafts.ProductsApi",
-            "stopAtEntry": false,
-            "serverReadyAction": {
-                "action": "openExternally",
-                "pattern": "^\\s*Now listening on:\\s+(https?://\\S+)"
-            },
-            "env": {
-                "ASPNETCORE_ENVIRONMENT": "Development"
-            },
-            "sourceFileMap": {
-                "/Views": "${workspaceFolder}/Views"
-            }
-        },
+        },        
         {
             "name": ".NET Core Attach",
             "type": "coreclr",
@@ -86,15 +48,6 @@
             "netCore": {
                 "appProject": "${workspaceFolder}/src/ContosoCrafts.WebSite/ContosoCrafts.WebSite.csproj"
             }
-        },
-        {
-            "name": "Docker API Debug",
-            "type": "docker",
-            "request": "launch",
-            "preLaunchTask": "docker-run: api debug",
-            "netCore": {
-                "appProject": "${workspaceFolder}/src/ContosoCrafts.WebSite/ContosoCrafts.WebSite.csproj"
-            }
-        }
+        }        
     ]
 }
