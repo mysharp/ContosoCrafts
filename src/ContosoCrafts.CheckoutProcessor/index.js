@@ -1,34 +1,39 @@
 import express from 'express';
-import logger from "./logger";
+import { StatusCodes } from 'http-status-codes';
+// eslint-disable-next-line import/extensions
+import logger from './logger.js';
 
 const app = express();
-const app_port = 3000
+const appPort = process.env.APP_PORT || 3000;
 
-app.use(express.json())
+app.use(express.json());
 
 app.get('/dapr/subscribe', (req, res) => {
-    const payload = [
-        {
-            pubsubname="rabbitmqbus", topic= "checkout",
-            route = "checkout",
-            metadata: {
-                rawPayload: 'true',
-            }
-        }
-    ];
+  const payload = [
+    {
+      pubsubname: 'rabbitmqbus',
+      topic: 'checkout',
+      route: 'checkout',
+      metadata: {
+        rawPayload: 'true',
+      },
+    },
+  ];
 
-    res.json(payload);
+  res.status(StatusCodes.OK).json(payload);
 });
 
 app.post('/checkout', (req, res) => {
-    logger.info(req.body)
-    logger.info("Order received...")
+  logger.info(req.body);
+  logger.info('Order received...');
+
+  res.status(StatusCodes.ACCEPTED);
 });
 
-app.listen(app_port, (error) => {
-    if (error) {
-        logger.error(error, "oh oh.. something bad happened");
-        throw new Error(error);
-    }
-    logger.info(`Listening on port ${app_port}`);
+app.listen(appPort, (error) => {
+  if (error) {
+    logger.error(error, 'oh oh.. something bad happened');
+    throw new Error(error);
+  }
+  logger.info(`Listening on port ${appPort}`);
 });
