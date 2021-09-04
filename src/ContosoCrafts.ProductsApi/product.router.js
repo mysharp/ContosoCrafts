@@ -8,17 +8,29 @@ import Product from './product.schema.js';
 const productRouter = express.Router();
 
 productRouter.get('/', async (req, res) => {
-  const { page } = req.query;
-  const { limit } = req.query;
+  const page = req.query.page ? parseInt(req.query.page, 10) : 1;
+  const limit = req.query.limit ? parseInt(req.query.page, 10) : 10;
 
-  const results = await Product.find({}).skip((page - 1) * limit).limit(limit);
+  try {
+    const results = await Product.find({}).skip((page - 1) * limit).limit(limit);
 
-  res.status(StatusCodes.OK).json(results);
+    res.status(StatusCodes.OK).json(results);
+  } catch (error) {
+    logger.error(error);
+    res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ error });
+  }
 });
 
 productRouter.get('/:id', async (req, res) => {
   const { id } = req.params;
-  const product = await Product.findById(id);
+
+  if (!id) {
+    logger.error('No id provided');
+    res.status(StatusCodes.BAD_REQUEST).json({ message: 'Something went wrong' });
+    return;
+  }
+
+  const product = await Product.findOne({ Id: id });
 
   if (product) {
     logger.info(`Product ${id} found`);
@@ -33,7 +45,7 @@ productRouter.patch('/', async (req, res) => {
   try {
     const { productId, rating } = req.body;
     // eslint-disable-next-line max-len
-    const updatedDoc = await Product.findOneAndUpdate({ productId }, { $push: { rating } }, { new: true });
+    const updatedDoc = await Product.findOneAndUpdate({ Id: productId }, { $push: { rating } }, { new: true });
 
     res.status(StatusCodes.OK).json(updatedDoc);
   } catch (error) {
