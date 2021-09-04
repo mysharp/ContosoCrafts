@@ -4,7 +4,7 @@ import { StatusCodes } from 'http-status-codes';
 import logger from './logger.js';
 
 const app = express();
-const appPort = process.env.APP_PORT || 3000;
+const appPort = process.env.NODE_APP_PORT || 80;
 
 app.use(express.json());
 
@@ -35,5 +35,7 @@ app.listen(appPort, (error) => {
     logger.error(error, 'oh oh.. something bad happened');
     throw new Error(error);
   }
+
+  logger.info(`Node Environment ${process.env.NODE_ENV}`);
   logger.info(`Listening on port ${appPort}`);
 });
