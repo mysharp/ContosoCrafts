@@ -5,7 +5,7 @@ const { createStream } = bunyanSeq;
 
 const seqUrl = process.env.NODE_ENV === 'production' ? 'http://seq_service:80' : 'http://localhost:8191';
 const logger = createLogger({
-  name: 'myapp',
+  name: 'productsapi',
   streams: [
     {
       name: 'console',
