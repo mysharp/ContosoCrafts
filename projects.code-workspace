@@ -1,0 +1,21 @@
+{
+    "folders": [
+        {
+            "path": "src/ContosoCrafts.Website",
+            "name": "Website"
+        },
+        {
+            "path": "src/ContosoCrafts.ProductsApi",
+            "name": "ProductsApi"
+        },
+        {
+            "path": "src/ContosoCrafts.CheckoutProcessor",
+            "name": "CheckoutProcessor"
+        },
+        {
+            "path": ".",
+            "name": "All"
+        },
+    ],
+    "extensions": {}
+}
