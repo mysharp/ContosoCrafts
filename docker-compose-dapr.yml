@@ -21,7 +21,7 @@ services:
     logging: *default-logging
 
   website_dapr:
-    image: "daprio/daprd:1.2.2"
+    image: "daprio/daprd:1.3.0"
     command:
       [
         "./daprd",
@@ -48,12 +48,14 @@ services:
     build:
       context: ./src/ContosoCrafts.ProductsApi
       dockerfile: Dockerfile
+    environment: 
+      - NODE_ENV=production
     env_file:
       - .env
     logging: *default-logging
 
   productsapi_dapr:
-    image: "daprio/daprd:1.2.2"
+    image: "daprio/daprd:1.3.0"
     command:
       [
         "./daprd",
@@ -80,12 +82,14 @@ services:
     build:
       context: ./src/ContosoCrafts.CheckoutProcessor
       dockerfile: Dockerfile
+    environment: 
+      - NODE_ENV=production
     env_file:
       - .env
     logging: *default-logging
 
   checkoutprocessor_dapr:
-    image: "daprio/daprd:1.2.2"
+    image: "daprio/daprd:1.3.0"
     command:
       [
         "./daprd",
