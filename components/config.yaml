@@ -10,3 +10,11 @@ spec:
       endpointAddress: "http://zipkin_service:9411/api/v2/spans"
   metric:
     enabled: true
+  nameResolution:
+    component: "consul"
+    configuration:
+      client:
+        address: "consul_service:8500"
+      selfRegister: true
+      tags:
+        - "dapr"

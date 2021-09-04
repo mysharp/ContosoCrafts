@@ -81,6 +81,17 @@ services:
       SEQ_ADDRESS: "http://seq_service:5341"
     restart: unless-stopped
 
+  consul:
+    image: "consul:1.10"
+    container_name: "consul_service"
+    hostname: "consul_service"
+    ports:
+      - "8500:8500"
+      - "8600:8600/tcp"
+      - "8600:8600/udp"
+    volumes:
+     - ./consul.server.json:/consul/config/server.json:ro
+    command: "agent"
 networks:
   default:
     name: dapr_network
