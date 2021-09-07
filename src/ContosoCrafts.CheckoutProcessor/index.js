@@ -1,7 +1,18 @@
+/* eslint-disable import/extensions */
 import express from 'express';
 import { StatusCodes } from 'http-status-codes';
-// eslint-disable-next-line import/extensions
+import lightshipMod from 'lightship';
 import logger from './logger.js';
+
+// eslint-disable-next-line no-unused-vars
+const { createLightship, ConfigurationInput } = lightshipMod;
+
+/** @type {ConfigurationInput} */
+const lightshipConfig = {
+  port: parseInt(process.env.LIGHTSHIP_PORT, 10) || 9000,
+};
+
+const lightship = createLightship(lightshipConfig);
 
 const app = express();
 const appPort = process.env.NODE_APP_PORT || 80;
@@ -30,12 +41,13 @@ app.post('/checkout', (req, res) => {
   res.status(StatusCodes.ACCEPTED);
 });
 
-app.listen(appPort, (error) => {
-  if (error) {
-    logger.error(error, 'oh oh.. something bad happened');
-    throw new Error(error);
-  }
-
+const server = app.listen(appPort, () => {
+  lightship.signalReady();
   logger.info(`Node Environment ${process.env.NODE_ENV}`);
   logger.info(`Listening on port ${appPort}`);
+});
+
+server.on('error', (error) => {
+  logger.error(error, 'oh oh.. something bad happened');
+  lightship.shutdown();
 });
