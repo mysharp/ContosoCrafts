@@ -15,9 +15,9 @@ const lightshipConfig = {
 const lightship = createLightship(lightshipConfig);
 
 const app = express();
-const appPort = process.env.NODE_APP_PORT || 80;
+const appPort = parseInt(process.env.NODE_APP_PORT, 10) || 80;
 
-app.use(express.json());
+app.use(express.json({ type: ['application/json', 'application/*+json'] }));
 
 app.get('/dapr/subscribe', (req, res) => {
   const payload = [

@@ -36,8 +36,10 @@
 			],
 			"dockerRun": {
 				"env": {
-					"DEBUG": "*",
-					"NODE_ENV": "development"
+					"DEBUG": "*",					
+					"NODE_ENV": "development",
+					"NODE_APP_PORT": "3000",
+					"LIGHTSHIP_PORT": "3001"
 				}
 			},
 			"node": {

@@ -6,6 +6,13 @@
             "request": "launch",
             "preLaunchTask": "docker-run: debug",
             "platform": "node"
+        },
+        {
+            "name": "Docker: Attach to Checkoutprocessor",
+            "type": "node",
+            "request": "attach",
+            "remoteRoot": "/app",
+            "port": 9220
         }
     ]
 }

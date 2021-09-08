@@ -9,10 +9,10 @@ import productRouter from './product.router.js';
 const { createLightship, ConfigurationInput } = lightshipMod;
 
 const app = express();
-const appPort = process.env.NODE_APP_PORT || 80;
+const appPort = parseInt(process.env.NODE_APP_PORT, 10) || 80;
 const mongodbHost = process.env.NODE_ENV === 'production' ? process.env.MONGO_SERVER : 'localhost:27017';
 
-app.use(express.json());
+app.use(express.json({ type: ['application/json', 'application/*+json'] }));
 
 app.use('/products', productRouter);
 
