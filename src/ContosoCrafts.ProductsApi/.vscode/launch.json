@@ -18,10 +18,10 @@
             "type": "pwa-node"
         },
         {
-            "name": "Docker Node.js Launch",
+            "name": "Docker Productsapi Attach",
             "type": "docker",
             "request": "launch",
-            "preLaunchTask": "docker-run: debug",
+            "containerName": "contoso_productsapi_1",
             "platform": "node"
         }
     ]
