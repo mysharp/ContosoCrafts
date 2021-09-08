@@ -78,8 +78,7 @@ services:
     ports:
       - "12201:12201/udp"
     environment:
-      SEQ_ADDRESS: "http://seq_service:5341"
-    restart: unless-stopped
+      SEQ_ADDRESS: "http://seq_service:5341"    
 
   consul:
     image: "consul:1.10"
